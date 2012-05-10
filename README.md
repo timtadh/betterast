@@ -22,7 +22,7 @@ An AST `Node` which has a `label` and `children`. That's it! Simple but useful.
 
 Other versions of this particular AST have included automatic tree (equality)
 comparison. I will consider adding this back. As a further note, this AST
-package is compatible with my (Zhang-Shasha Tree Edit
-Distance)[https://github.com/timtadh/zhang-shasha] package.
+package is compatible with my [Zhang-Shasha Tree Edit
+Distance](https://github.com/timtadh/zhang-shasha) package.
 
 
