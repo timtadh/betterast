@@ -51,7 +51,7 @@ class Node(object):
             if hasattr(node, 'children'):
                 return not bool(len(node.children))
             else:
-                return False
+                return True
         def walk(node):
             stack = list()
             stack.append((node, 0))
