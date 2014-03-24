@@ -1,13 +1,27 @@
-from distutils.core import setup
+try:
+    from setuptools import setup
+    # arguments that distutils doesn't understand
+    setuptools_kwargs = {
+        'install_requires': [
+        ],
+        'provides': ['betterast'],
+        'zip_safe': False
+    }
+except ImportError:
+    from distutils.core import setup
+    setuptools_kwargs = {}
 
 setup(name='betterast',
-      version='git master',
+      version=0.1,
       description=(
-        'An order labeled tree.'
+        'A generic ast.'
       ),
       author='Tim Henderson',
-      author_email='tim.tadh@gmail.com',
-      url='https://www.github.com/timtadh/betterast',
-      license='GPL',
+      author_email='tadh@case.edu',
+      url='https://github.com/timtadh/betterast',
       packages=['betterast'],
+      platforms=['unix'],
+      scripts=[],
+      **setuptools_kwargs
 )
+
