@@ -30,6 +30,18 @@ class Node(object):
         self.label = label
         self.children = children if children is not None else list()
 
+    def kid(self, label, default=None):
+        for kid in self.children:
+            if kid.label == label:
+                return kid
+        return default
+
+    def descendent(self, label, default=None):
+        for n in self:
+            if n.label == label:
+                return n
+        return default
+
     def addkid(self, node, before=False):
         if before:  self.children.insert(0, node)
         else:   self.children.append(node)

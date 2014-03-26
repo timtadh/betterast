@@ -12,7 +12,7 @@ except ImportError:
     setuptools_kwargs = {}
 
 setup(name='betterast',
-      version=0.1,
+      version=0.2,
       description=(
         'A generic ast.'
       ),
