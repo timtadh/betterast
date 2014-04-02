@@ -52,7 +52,7 @@ class Node(object):
         if not isinstance(other, Node):
             return False
         for a, b in itertools.izip(self, other):
-            if isinstance(a, Node) and isinstance(b, None):
+            if isinstance(a, Node) and isinstance(b, Node):
                 if a.label != b.label:
                     return False
             elif a != b:
