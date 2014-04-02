@@ -47,6 +47,17 @@ class Node(object):
         else:   self.children.append(node)
         return self
 
+    def __eq__(self, other):
+        if not isinstance(other, Node):
+            return False
+        for a, b in itertools.izip(self, other):
+            if isinstance(a, Node) and isinstance(b, None):
+                if a.label != b.label:
+                    return False
+            elif a != b:
+                return False
+        return True
+
     def __iter__(self):
         queue = collections.deque()
         queue.append(self)
