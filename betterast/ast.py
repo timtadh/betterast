@@ -4,6 +4,7 @@
 #Email: tim.tadh@hackthology.com
 #For licensing see the LICENSE file in the top level directory.
 
+import itertools
 import collections, math
 
 def build_tree(gen):
