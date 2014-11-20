@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os, sys
+
+import betterast
+import optutils
+from optutils import output, log, error_codes, add_code
+
+
+__version__ = 'git master'
+
+add_code('version')
+
+def version():
+    '''Print version and exits'''
+    log('version :', __version__)
+    sys.exit(error_codes['version'])
+
+def parse(i, line):
+    if not line:
+        return None
+
+    s = line.strip().split(':', 1)
+    if len(s) != 2:
+        raise SyntaxError, "got invalid line on line %d" % i
+
+    try:
+        kids = int(s[0])
+    except Exception, e:
+        raise SyntaxError, "got invalid line on line %d, %s" % (i, str(e))
+
+    return kids, s[1]
+
+
+@optutils.main(
+    'usage: treedot -o out.dot in.ast',
+    '''
+    Example:
+
+        $ treedot -o out.dot in.ast
+
+    Options
+        -h, help                      print this message
+        -v, version                   print the version
+        -o, output=<path>             path to output file
+    ''',
+    'hvo:',
+    ['help', 'version', 'output='],
+)
+def main(argv, util, parser):
+    """
+    The main entry point to the program
+    """
+
+    opts, args = parser(argv)
+    output = None
+    for opt, arg in opts:
+        if opt in ('-h', '--help',):
+            util.usage()
+        elif opt in ('-v', '--version',):
+            version()
+        elif opt in ('-o', '--output',):
+            output = os.path.abspath(arg)
+
+    path = None
+    if len(args) == 1:
+        path = args[0]
+
+    with util.getfile(path, 'r', sys.stdin) as inf:
+        root = betterast.build_tree(parse(i, line) for i, line in enumerate(inf) if line.strip())
+
+    with util.getfile(output, 'w', sys.stdout) as ouf:
+        print >>ouf, root.dotty()
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))
+

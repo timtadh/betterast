@@ -12,7 +12,7 @@ except ImportError:
     setuptools_kwargs = {}
 
 setup(name='betterast',
-      version=0.3,
+      version=0.4,
       description=(
         'A generic ast.'
       ),
@@ -21,7 +21,7 @@ setup(name='betterast',
       url='https://github.com/timtadh/betterast',
       packages=['betterast'],
       platforms=['unix'],
-      scripts=[],
+      scripts=['bin/treedot'],
       **setuptools_kwargs
 )
 
